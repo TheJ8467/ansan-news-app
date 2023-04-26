@@ -15,11 +15,8 @@ import psycopg2
 from flask_cors import CORS, cross_origin
 from io import BytesIO
 from urllib.parse import unquote
-import dotenv
 
-dotenv.load_dotenv()
-
-conn = psycopg2.connect(os.environ['DATABASE_URL'])
+conn = psycopg2.connect("postgres://vtqrqerl:NIvz9MlhFQPKRzt0Hx8-ElEwGevtXehs@floppy.db.elephantsql.com/vtqrqerl")
 app = Flask(__name__)
 CORS(app, resources={r"*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -28,7 +25,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://vtqrqerl:NIvz9MlhFQPKRzt0Hx8-ElEwGevtXehs@floppy.db.elephantsql.com/vtqrqerl"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
